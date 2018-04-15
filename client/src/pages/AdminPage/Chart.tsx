@@ -14,13 +14,8 @@ export default class Chart extends React.Component<ChartProps> {
   _nvd3chart: nv.PieChart | null = null;
   _chart: SVGElement | null = null;
 
-  shouldComponentUpdate() {
-    return false;
-  }
-
-  // will be called even when shouldComponentUpdate returns false
-  componentWillReceiveProps(nextProps: ChartProps) {
-    const { data } = nextProps;
+  componentDidUpdate() {
+    const { data } = this.props;
     this._d3selection && this._d3selection.datum(data).call(this._nvd3chart);
   }
 
