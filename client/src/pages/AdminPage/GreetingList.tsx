@@ -1,13 +1,13 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Greeting } from "./types";
+import { Greeting } from "../../types";
 
-type GreetingMasterProps = {
+interface GreetingListProps {
   greetings: Greeting[];
-  onAdd: () => void;
-};
+  onAdd(): void;
+}
 
-const GreetingMaster = (props: GreetingMasterProps) => {
+const GreetingList = (props: GreetingListProps) => {
   const { greetings, onAdd } = props;
   const body = greetings.map(greeting => (
     <tr key={greeting.id}>
@@ -35,4 +35,4 @@ const GreetingMaster = (props: GreetingMasterProps) => {
   );
 };
 
-export default GreetingMaster;
+export default GreetingList;

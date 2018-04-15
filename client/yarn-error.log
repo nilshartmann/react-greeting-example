@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/nils/.nvm/versions/node/v8.9.3/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js start
+  /Users/nils/.nvm/versions/node/v8.9.3/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js prettier
 
 PATH: 
   /Users/nils/.nvm/versions/node/v8.9.3/bin:/Users/nils/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/nils/bin
@@ -22,7 +22,8 @@ npm manifest:
     "author": "Nils Hartmann",
     "license": "MIT",
     "scripts": {
-      "start": "webpack-dev-server"
+      "start": "webpack-dev-server",
+      "prettier": "prettier --write \"{src}/**/*.{js,jsx,ts,tsx}\""
     },
     "dependencies": {
       "@types/react": "^16.3.10",
@@ -5768,9 +5769,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 2
   Command: sh
-  Arguments: -c webpack-dev-server
+  Arguments: -c prettier --write "{src}/**/*.{js,jsx,ts,tsx}"
   Directory: /Users/nils/develop/javascript/react-greeting-example-16.3/client
   Output:
   

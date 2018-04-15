@@ -1,17 +1,17 @@
 import * as React from "react";
-import { Greeting, NewGreeting } from "./types";
+import { Greeting, NewGreeting } from "../../types";
 
-interface GreetingDetailProps {
+interface GreetingComposerProps {
   greeting?: Greeting;
-  onSave: (newGreeting: NewGreeting) => void;
+  onSave(newGreeting: NewGreeting): void;
 }
 
-interface GreetingDetailState {
+interface GreetingComposerState {
   name: string;
   greeting: string;
 }
 
-export default class GreetingDetail extends React.Component<GreetingDetailProps, GreetingDetailState> {
+export default class GreetingComposer extends React.Component<GreetingComposerProps, GreetingComposerState> {
   input: HTMLInputElement | null = null;
 
   render() {
@@ -36,7 +36,7 @@ export default class GreetingDetail extends React.Component<GreetingDetailProps,
     );
   }
 
-  constructor(props: GreetingDetailProps) {
+  constructor(props: GreetingComposerProps) {
     super(props);
     const { name, greeting } = this.props.greeting || { name: "", greeting: "" };
     this.state = {

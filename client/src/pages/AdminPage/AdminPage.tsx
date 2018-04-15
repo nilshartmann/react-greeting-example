@@ -1,32 +1,32 @@
 import * as React from "react";
 import { Router, Route } from "react-router-dom";
-import GreetingMaster from "./GreetingMaster";
-import GreetingDetail from "./GreetingDetail";
-import { Greeting, NewGreeting } from "./types";
+import GreetingList from "./GreetingList";
+import GreetingComposer from "./GreetingComposer";
+import { Greeting, NewGreeting } from "../../types";
 import { RouteComponentProps } from "react-router";
 
 const BACKEND_URL = "http://localhost:7000/greetings";
 const MODE_MASTER = "MODE_MASTER";
 const MODE_DETAIL = "MODE_DETAIL";
 
-interface GreetingControllerProps extends RouteComponentProps<void> {}
+interface AdminPageProps extends RouteComponentProps<void> {}
 
-interface GreetingControllerState {
+interface AdminPageState {
   greetings: Greeting[];
 }
 
-export default class GreetingController extends React.Component<GreetingControllerProps, GreetingControllerState> {
+export default class AdminPage extends React.Component<AdminPageProps, AdminPageState> {
   render() {
     const { greetings } = this.state;
     return (
       <div className="Main">
-        <Route exact path="/" render={() => <GreetingMaster greetings={greetings} onAdd={() => this.redirectTo("/add")} />} />
-        <Route path="/add" render={() => <GreetingDetail onSave={greeting => this.saveGreeting(greeting)} />} />
+        <Route exact path="/" render={() => <GreetingList greetings={greetings} onAdd={() => this.redirectTo("/add")} />} />
+        <Route path="/add" render={() => <GreetingComposer onSave={greeting => this.saveGreeting(greeting)} />} />
       </div>
     );
   }
 
-  constructor(props: GreetingControllerProps) {
+  constructor(props: AdminPageProps) {
     super(props);
     this.state = {
       greetings: []
