@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
-    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+    "dist": "rimraf public/dist && webpack",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "webserver": "ws --directory public/ --spa index.html"
   },
   "dependencies": {
     "@types/d3": "^5.0.0",
@@ -24,7 +26,9 @@
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.0.0",
+    "local-web-server": "^2.5.1",
     "prettier": "^1.12.0",
+    "rimraf": "^2.6.2",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.8.1",
     "webpack": "^4.5.0",

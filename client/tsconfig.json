@@ -1,10 +1,12 @@
 {
-	"compilerOptions": {
-		"lib": ["es2015", "dom"],
-		"target": "es5",
-		"strict": true,
-		"allowJs": true,
-		"jsx": "react"
-	},
-	"include": ["./src/**/*"]
+  "compilerOptions": {
+    "lib": ["es2015", "dom"],
+    "target": "es5",
+    "strict": true,
+    "allowJs": true,
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node"
+  },
+  "include": ["./src/**/*"]
 }

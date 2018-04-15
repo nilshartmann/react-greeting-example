@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Router, Route } from "react-router-dom";
 import GreetingList from "./GreetingList";
-import GreetingComposer from "./GreetingComposer";
 import { Greeting, NewGreeting } from "../../types";
 import { RouteComponentProps } from "react-router";
 
@@ -9,6 +8,26 @@ import Chart from "./Chart";
 import { aggregateGreetings } from "./util";
 
 const BACKEND_URL = "http://localhost:7000/greetings";
+
+interface LoadableGreetingComposerState {
+  GreetingComposer?: React.ComponentType<any>;
+}
+class LoadableGreetingComposer extends React.Component<any, LoadableGreetingComposerState> {
+  readonly state: LoadableGreetingComposerState = {};
+
+  async componentDidMount() {
+    const loadedComponent = await import(/* webpackChunkName: "greeting" */ "./GreetingComposer");
+    this.setState({ GreetingComposer: loadedComponent.default });
+  }
+
+  render() {
+    if (this.state.GreetingComposer) {
+      return <this.state.GreetingComposer {...this.props} />;
+    }
+
+    return <span>Loading...</span>;
+  }
+}
 
 interface AdminPageProps extends RouteComponentProps<void> {}
 
@@ -35,9 +54,9 @@ export default class AdminPage extends React.Component<AdminPageProps, AdminPage
           <Route
             path="/add"
             render={() => (
-              <GreetingComposer
+              <LoadableGreetingComposer
                 initialName={filter}
-                onSave={greeting => this.saveGreeting(greeting)}
+                onSave={(greeting: NewGreeting) => this.saveGreeting(greeting)}
                 onCancel={() => this.redirectTo("/")}
               />
             )}
