@@ -6,3 +6,5 @@ export type NewGreeting = {
 export type Greeting = NewGreeting & {
   id: number;
 };
+
+export type GreetingChartData = { label: string; value: number }[];

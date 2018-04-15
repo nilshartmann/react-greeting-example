@@ -2,7 +2,8 @@ import * as React from "react";
 import { Greeting, NewGreeting } from "../../types";
 
 interface GreetingComposerProps {
-  greeting?: Greeting;
+  initialName?: string | null;
+  onCancel(): void;
   onSave(newGreeting: NewGreeting): void;
 }
 
@@ -28,7 +29,8 @@ export default class GreetingComposer extends React.Component<GreetingComposerPr
           placeholder="Name"
         />
         <input onChange={event => this.updateModel(event)} name="greeting" value={greeting} placeholder="Greeting" />
-        <button onClick={() => this.reset()}>Clear</button>
+        <button onClick={this.reset}>Clear</button>
+        <button onClick={this.cancel}>Cancel</button>
         <button disabled={saveDisabled} onClick={() => this.save()}>
           Save
         </button>
@@ -38,19 +40,25 @@ export default class GreetingComposer extends React.Component<GreetingComposerPr
 
   constructor(props: GreetingComposerProps) {
     super(props);
-    const { name, greeting } = this.props.greeting || { name: "", greeting: "" };
+    const { initialName } = this.props;
     this.state = {
-      name,
-      greeting
+      name: initialName || "",
+      greeting: ""
     };
   }
 
-  reset() {
+  reset = () => {
     this.setState({ name: "", greeting: "" });
     if (this.input) {
       this.input.focus();
     }
-  }
+  };
+
+  cancel = () => {
+    const { onCancel } = this.props;
+
+    onCancel();
+  };
 
   save() {
     const { onSave } = this.props;

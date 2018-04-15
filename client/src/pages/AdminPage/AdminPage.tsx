@@ -5,32 +5,59 @@ import GreetingComposer from "./GreetingComposer";
 import { Greeting, NewGreeting } from "../../types";
 import { RouteComponentProps } from "react-router";
 
+import Chart from "./Chart";
+import { aggregateGreetings } from "./util";
+
 const BACKEND_URL = "http://localhost:7000/greetings";
-const MODE_MASTER = "MODE_MASTER";
-const MODE_DETAIL = "MODE_DETAIL";
 
 interface AdminPageProps extends RouteComponentProps<void> {}
 
 interface AdminPageState {
   greetings: Greeting[];
+  filter: string | null;
 }
 
 export default class AdminPage extends React.Component<AdminPageProps, AdminPageState> {
+  readonly state: AdminPageState = {
+    greetings: [],
+    filter: null
+  };
+
   render() {
-    const { greetings } = this.state;
+    const { greetings, filter } = this.state;
+    const aggregatedGreetings = aggregateGreetings(greetings);
+    const filtered = filter ? greetings.filter(greeting => greeting.name === filter) : greetings;
+
     return (
       <div className="Main">
-        <Route exact path="/" render={() => <GreetingList greetings={greetings} onAdd={() => this.redirectTo("/add")} />} />
-        <Route path="/add" render={() => <GreetingComposer onSave={greeting => this.saveGreeting(greeting)} />} />
+        <div className="Left">
+          <Route exact path="/" render={() => <GreetingList greetings={filtered} onAdd={() => this.redirectTo("/add")} />} />
+          <Route
+            path="/add"
+            render={() => (
+              <GreetingComposer
+                initialName={filter}
+                onSave={greeting => this.saveGreeting(greeting)}
+                onCancel={() => this.redirectTo("/")}
+              />
+            )}
+          />
+        </div>
+        <div className="Right">
+          <Chart
+            data={aggregatedGreetings}
+            onSegmentSelected={filter => {
+              if (this.state.filter === filter) {
+                // reset filter when clicking again
+                this.setState({ filter: null });
+              } else {
+                this.setState({ filter });
+              }
+            }}
+          />
+        </div>
       </div>
     );
-  }
-
-  constructor(props: AdminPageProps) {
-    super(props);
-    this.state = {
-      greetings: []
-    };
   }
 
   componentDidMount() {

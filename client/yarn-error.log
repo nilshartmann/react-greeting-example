@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/nils/.nvm/versions/node/v8.9.3/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js prettier
+  /Users/nils/.nvm/versions/node/v8.9.3/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js remove nv
 
 PATH: 
   /Users/nils/.nvm/versions/node/v8.9.3/bin:/Users/nils/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/nils/bin
@@ -23,7 +23,7 @@ npm manifest:
     "license": "MIT",
     "scripts": {
       "start": "webpack-dev-server",
-      "prettier": "prettier --write \"{src}/**/*.{js,jsx,ts,tsx}\""
+      "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
     },
     "dependencies": {
       "@types/react": "^16.3.10",
@@ -5768,17 +5768,10 @@ Lockfile:
       yeoman-environment "^2.0.5"
 
 Trace: 
-  Error: Command failed.
-  Exit code: 2
-  Command: sh
-  Arguments: -c prettier --write "{src}/**/*.{js,jsx,ts,tsx}"
-  Directory: /Users/nils/develop/javascript/react-greeting-example-16.3/client
-  Output:
-  
-      at ProcessTermError.MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at new ProcessTermError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:30281:17)
-      at emitTwo (events.js:126:13)
-      at ChildProcess.emit (events.js:214:7)
-      at maybeClose (internal/child_process.js:925:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
+  Error: This module isn't specified in a manifest.
+      at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
+      at Object.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:60445:15)
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
+      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:109:13
+      at <anonymous>
