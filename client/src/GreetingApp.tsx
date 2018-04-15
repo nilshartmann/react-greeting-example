@@ -10,10 +10,12 @@ const GreetingApp = () => (
     <div>
       <h1 style={{ paddingBottom: "5px", marginBottom: "1rem", borderBottom: "1px solid gray" }}>Greeting App</h1>
       <Switch>
-        <ErrorHandler>
-          <Route path="/greet/:greetingId" component={GreetingDisplay} />
-          <Route path="/" component={AdminPage} />
-        </ErrorHandler>
+        <React.StrictMode>
+          <ErrorHandler>
+            <Route path="/greet/:greetingId" component={GreetingDisplay} />
+            <Route path="/" component={AdminPage} />
+          </ErrorHandler>
+        </React.StrictMode>
       </Switch>
     </div>
   </Router>
