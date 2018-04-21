@@ -4,7 +4,7 @@ module.exports = {
   output: {
     path: __dirname + "/public/dist/",
     filename: "main.js",
-    publicPath: "dist/",
+    publicPath: "/dist/",
     chunkFilename: "[name].js"
   },
   mode: "development",
