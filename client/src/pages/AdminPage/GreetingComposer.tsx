@@ -13,21 +13,13 @@ interface GreetingComposerState {
 }
 
 export default class GreetingComposer extends React.Component<GreetingComposerProps, GreetingComposerState> {
-  input: HTMLInputElement | null = null;
-
   render() {
     const { name, greeting } = this.state;
     const saveDisabled = !(name && greeting);
 
     return (
       <div>
-        <input
-          ref={input => (this.input = input)}
-          onChange={event => this.updateModel(event)}
-          name="name"
-          value={name}
-          placeholder="Name"
-        />
+        <input onChange={event => this.updateModel(event)} name="name" value={name} placeholder="Name" />
         <input onChange={event => this.updateModel(event)} name="greeting" value={greeting} placeholder="Greeting" />
         <button onClick={this.reset}>Clear</button>
         <button onClick={this.cancel}>Cancel</button>
@@ -49,9 +41,6 @@ export default class GreetingComposer extends React.Component<GreetingComposerPr
 
   reset = () => {
     this.setState({ name: "", greeting: "" });
-    if (this.input) {
-      this.input.focus();
-    }
   };
 
   cancel = () => {
