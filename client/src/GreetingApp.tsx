@@ -23,14 +23,14 @@ const GreetingApp = () => (
   <Router>
     <div>
       <h1 style={{ paddingBottom: "5px", marginBottom: "1rem", borderBottom: "1px solid gray" }}>Greeting App</h1>
-      <Switch>
-        <React.StrictMode>
-          <ErrorHandler>
+      <React.StrictMode>
+        <ErrorHandler>
+          <Switch>
             <Route exact path="/greet/:greetingId" component={LoadableDisplayPage} />
             <Route path="/" component={LoadableAdminPage} />
-          </ErrorHandler>
-        </React.StrictMode>
-      </Switch>
+          </Switch>
+        </ErrorHandler>
+      </React.StrictMode>
     </div>
   </Router>
 );
