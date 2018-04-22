@@ -50,8 +50,9 @@ export default class DisplayPage extends React.Component<GreetingDisplayControll
     return (
       <React.Fragment>
         <p>
-          Your person greeting, <b>{greeting.name}</b>: <b>{greeting.greeting}</b>
+          Someone send you a greeting, <b>{greeting.name}</b>!
         </p>
+        <h1>{greeting.greeting}</h1>
         <LinkButtonBar links={[{ title: "Home", target: "/" }, { title: "Add Greeting", target: "/add" }]} />
       </React.Fragment>
     );

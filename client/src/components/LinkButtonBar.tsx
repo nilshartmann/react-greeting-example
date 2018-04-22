@@ -19,9 +19,9 @@ const LinkButtonBar = (props: LinkButtonBarProps) => {
   } = props;
 
   return (
-    <div>
+    <div style={{ borderTop: "1px solid gray", marginTop: "3rem", paddingTop: "5px" }}>
       {links.map(link => (
-        <button key={link.target} onClick={() => history.push(link.target)}>
+        <button style={{ fontSize: "80%" }} key={link.target} onClick={() => history.push(link.target)}>
           {link.title}
         </button>
       ))}
