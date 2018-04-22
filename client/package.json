@@ -6,7 +6,8 @@
   "author": "Nils Hartmann",
   "license": "MIT",
   "scripts": {
-    "start": "yarn webserver:prod",
+    "start": "webpack-dev-server",
+    "demo": "yarn webserver:prod",
     "dist": "yarn dist:dev && yarn dist:step_01 && yarn dist:step_02 && yarn dist:step_03 && yarn dist:step_03a && yarn dist:step_04",
     "dist:dev": "rimraf public/dist && webpack",
     "dist:step_01": "rimraf public/dist-01 && webpack --mode production --output-path public/dist-prod-01",
@@ -16,9 +17,9 @@
     "dist:step_04": "rimraf public/dist-prod-04 && webpack --config webpack.config.prod-with-hashes.js",
     "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "webserver": "ws --directory public/ --spa index.html",
-    "webserver:prod": "ws --directory public/ --spa index-with-externals.html",
-    "webserver:vendor": "ws --directory public/ --spa index-with-vendor.html",
-    "webserver:hashes": "ws --directory public/ --spa index-with-hashes.html"
+    "webserver:prod": "ws --directory public/ --spa index-with-externals.html --log.format tiny",
+    "webserver:vendor": "ws --directory public/ --spa index-with-vendor.html --log.format tiny",
+    "webserver:hashes": "ws --directory public/ --spa index-with-hashes.html --log.format tiny"
   },
   "dependencies": {
     "@types/d3": "^5.0.0",

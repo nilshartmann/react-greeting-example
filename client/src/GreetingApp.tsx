@@ -27,7 +27,7 @@ const GreetingApp = () => (
         <React.StrictMode>
           <ErrorHandler>
             <Route exact path="/greet/:greetingId" component={LoadableDisplayPage} />
-            <Route exact path="/" component={LoadableAdminPage} />
+            <Route path="/" component={LoadableAdminPage} />
           </ErrorHandler>
         </React.StrictMode>
       </Switch>
