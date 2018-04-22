@@ -16,8 +16,8 @@ class LoadableGreetingComposer extends React.Component<any, LoadableGreetingComp
   readonly state: LoadableGreetingComposerState = {};
 
   async componentDidMount() {
-    const loadedComponent = await import(/* webpackChunkName: "GreetingComposer" */ "./GreetingComposer");
-    this.setState({ GreetingComposer: loadedComponent.default });
+    const { default: GreetingComposer } = await import(/* webpackChunkName: "GreetingComposer" */ "./GreetingComposer");
+    this.setState({ GreetingComposer });
   }
 
   render() {
