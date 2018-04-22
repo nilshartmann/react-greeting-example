@@ -6,9 +6,8 @@ module.exports = {
   entry: "./src/main.tsx",
   output: {
     path: __dirname + "/public/dist-prod-04/",
-    filename: "[name].[hash].js",
-    publicPath: "/dist-prod-04/",
-    chunkFilename: "[name].[hash].js"
+    filename: "[name].[chunkhash:6].js",
+    publicPath: "/dist-prod-04/"
   },
   mode: "production",
   resolve: {
