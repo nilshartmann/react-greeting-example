@@ -3,6 +3,8 @@ import LinkButtonBar from "../../components/LinkButtonBar";
 import { RouteComponentProps } from "react-router";
 import { Greeting } from "../../types";
 
+import GreetingDisplay from "./GreetingDispay";
+
 const BACKEND_URL = "http://localhost:7000/greetings";
 
 interface GreetingDisplayControllerParams {
@@ -49,10 +51,7 @@ export default class DisplayPage extends React.Component<GreetingDisplayControll
     // In a real-world, more complex example the rendering of the greeting would go to it's own dump component
     return (
       <React.Fragment>
-        <p>
-          Someone send you a greeting, <b>{greeting.name}</b>!
-        </p>
-        <h1>{greeting.greeting}</h1>
+        <GreetingDisplay greeting={greeting} />
         <LinkButtonBar links={[{ title: "Home", target: "/" }, { title: "Add Greeting", target: "/add" }]} />
       </React.Fragment>
     );

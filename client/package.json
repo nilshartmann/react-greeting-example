@@ -19,7 +19,8 @@
     "webserver": "ws --directory public/ --spa index.html",
     "webserver:prod": "ws --directory public/ --spa index-with-externals.html --log.format tiny",
     "webserver:vendor": "ws --directory public/ --spa index-with-vendor.html --log.format tiny",
-    "webserver:hashes": "ws --directory public/ --spa index-with-hashes.html --log.format tiny"
+    "webserver:hashes": "ws --directory public/ --spa index-with-hashes.html --log.format tiny",
+    "testcafe": "testcafe chrome testcafe/"
   },
   "dependencies": {
     "@types/d3": "^5.0.0",
@@ -43,6 +44,7 @@
     "prettier": "^1.12.0",
     "rimraf": "^2.6.2",
     "source-map-loader": "^0.2.3",
+    "testcafe": "^0.19.2",
     "typescript": "^2.8.1",
     "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14",
