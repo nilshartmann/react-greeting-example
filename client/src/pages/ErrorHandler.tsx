@@ -19,6 +19,39 @@ export default class ErrorHandler extends React.Component<{}, ErrorHandlerState>
     });
   }
 
+  renderErrorInfo() {
+    const { errorInfo } = this.state;
+
+    if (!errorInfo) {
+      return null;
+    }
+
+    return (
+      <React.Fragment>
+        <h2>Component Stack</h2>
+        <pre>{errorInfo.componentStack}</pre>
+      </React.Fragment>
+    );
+  }
+
+  renderErrorStack() {
+    const { error } = this.state;
+
+    if (!error || !error.stack) {
+      return null;
+    }
+
+    return (
+      <React.Fragment>
+        <h2>Stack Trace</h2>
+        <pre>{error.stack}</pre>
+      </React.Fragment>
+    );
+
+    // const trace = error.stack.replace("\n", "XXX");
+    // return <pre>{trace}</pre>;
+  }
+
   render() {
     const { children } = this.props;
 
@@ -28,8 +61,9 @@ export default class ErrorHandler extends React.Component<{}, ErrorHandlerState>
 
     return (
       <div>
-        <h1>An Error occured: {this.state.error && this.state.error.toString()}</h1>
-        <pre>{this.state.errorInfo && this.state.errorInfo.componentStack}</pre>
+        <h1>An Error occured: {this.state.error && this.state.error.message}</h1>
+        {this.renderErrorStack()}
+        {this.renderErrorInfo()}
       </div>
     );
   }
