@@ -8,13 +8,22 @@ const createApp = (db, largedata) => {
 
   app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
     res.header("Access-Control-Allow-Credentials", "true");
     next();
   });
 
   // Return all greetings
   app.get("/greetings", (req, res) => res.json(db.findAll()));
+
+  // Reset database
+  app.post("/clear-greetings", (req, res) => {
+    db.initialize();
+    return res.status(204).send();
+  });
 
   // Return greeting with specified id (or 404)
   app.get("/greetings/:id", (req, res) => {
@@ -53,7 +62,9 @@ const createApp = (db, largedata) => {
     }
 
     if (!greeting.greeting) {
-      return res.status(400).json({ error: "greeting.greeting must be defined" });
+      return res
+        .status(400)
+        .json({ error: "greeting.greeting must be defined" });
     }
 
     const newGreeting = db.insert(req.body);
